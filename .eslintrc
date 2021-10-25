@@ -1,0 +1,23 @@
+{
+  "parser": "babel-eslint",
+  "plugins": ["react", "react-native", "jest"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-native/all",
+    "plugin:jest/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "eqeqeq": "error",
+    "no-console": "warn",
+    "react-native/sort-styles": 0,
+    "react-native/split-platform-components": 0,
+    "react-native/no-color-literals": 0,
+    "react-native/no-raw-text": ["error", {"skip": ["Animated.Text"]}]
+  }
+}
