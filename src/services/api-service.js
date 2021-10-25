@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const apiEndpoint = ' https://api.coinlore.net/api'
+const apiEndpoint = 'https://api.coinlore.net/api'
 
 export const getAllCoins = () =>
     axios

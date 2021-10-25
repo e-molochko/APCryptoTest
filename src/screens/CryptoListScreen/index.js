@@ -45,8 +45,10 @@ const CryptoListScreen = ({ navigation }) => {
     }, [navigation, currentUserName])
 
     useEffect(() => {
-        getCoins()
-    }, [])
+        if (isInternetReachable) {
+            getCoins()
+        }
+    }, [isInternetReachable])
 
     const onCoinRender = ({ item }) => (
         <CoinItem {...item} onItemPress={() => onNavigateToCoinInfo(item)} />

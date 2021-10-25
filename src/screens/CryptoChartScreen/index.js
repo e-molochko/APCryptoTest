@@ -9,7 +9,7 @@ import { useInterval } from '../../helpers/customHooks'
 import { getSpecificCoin } from '../../services/api-service'
 import { styles } from './styles'
 
-const UPDATES_LIMIT = 7
+const UPDATES_LIMIT = 6
 const UPDATE_INTERVAL = 30 * 1000
 
 // const getRandomInt = (min = 100, max = 500) => {
@@ -19,12 +19,12 @@ const UPDATE_INTERVAL = 30 * 1000
 // }
 
 const CryptoChartScreen = ({ navigation, route }) => {
-    const { id, price_usd, name, percent_change_1h } = route.params
+    const { id, price_usd, name } = route.params
     const currentPrice = Number(price_usd)
-    const price1hBefore =
-        currentPrice - currentPrice * Number(percent_change_1h)
+    // const price1hBefore =
+        // currentPrice - currentPrice * Number(percent_change_1h)
     const isInternetReachable = useSelector(selectInternetReachability)
-    const [data, setData] = useState([price1hBefore, currentPrice])
+    const [data, setData] = useState([currentPrice])
     const updateIntervalRef = useRef({})
 
     useLayoutEffect(() => {

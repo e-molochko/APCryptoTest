@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,SafeAreaView } from 'react-native'
 import { useSelector } from 'react-redux'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from '@react-navigation/native'
@@ -36,6 +36,7 @@ const AppNavigation = () => {
     const isInternetReachable = useSelector(selectInternetReachability)
     return (
         <NavigationContainer>
+
             {username && !isInternetReachable && <OfflineBanner />}
             <Stack.Navigator>
                 {!username ? (
@@ -61,9 +62,9 @@ const AppNavigation = () => {
 }
 
 const OfflineBanner = () => (
-    <View style={styles.bannerContainer}>
+    <SafeAreaView style={styles.bannerContainer}>
         <Text style={styles.bannerLabel}>{`You're currently offline`}</Text>
-    </View>
+    </SafeAreaView>
 )
 const styles = StyleSheet.create({
     bannerContainer: {
