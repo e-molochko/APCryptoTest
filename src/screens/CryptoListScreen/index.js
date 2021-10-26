@@ -59,7 +59,7 @@ const CryptoListScreen = ({ navigation }) => {
             return alert("You're currently offline")
         }
         navigation.push(routes.cryptoChart.name, {
-            ...coin,
+            coin,
         })
     }
     const onPercentageChange = (newValue) => {
@@ -68,7 +68,7 @@ const CryptoListScreen = ({ navigation }) => {
     const onFilterPress = useCallback(() => {
         const newFilterValue =
             minPercentageChange24 || minPercentageChange24 === 0
-                ? Number(minPercentageChange24)
+                ? Number(minPercentageChange24.replace(',', '.'))
                 : null
         setMinPercentageFilter(newFilterValue)
     }, [minPercentageChange24])
@@ -90,8 +90,9 @@ const CryptoListScreen = ({ navigation }) => {
                     style={styles.input}
                     placeholder="Minimum 24-hr % Change"
                     onChangeText={onPercentageChange}
+                    onSubmitEditing={onFilterPress}
                     value={minPercentageChange24}
-                    keyboardType="numeric"
+                    keyboardType="number-pad"
                 />
                 <TouchableOpacity
                     style={styles.filterButton}

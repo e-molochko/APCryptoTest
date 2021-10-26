@@ -4,6 +4,7 @@ import { View, Text } from 'react-native'
 import { useSelector } from 'react-redux'
 import { LineChart, Grid, YAxis, XAxis } from 'react-native-svg-charts'
 
+import { cryptoCoin } from '../../propTypes/cryptoCoin'
 import { selectInternetReachability } from '../../selectors/userSelector'
 import { useInterval } from '../../helpers/customHooks'
 import { getSpecificCoin } from '../../services/api-service'
@@ -19,10 +20,11 @@ const UPDATE_INTERVAL = 30 * 1000
 // }
 
 const CryptoChartScreen = ({ navigation, route }) => {
-    const { id, price_usd, name } = route.params
+    const { coin } = route.params
+    const { id, price_usd, name } = coin
     const currentPrice = Number(price_usd)
     // const price1hBefore =
-        // currentPrice - currentPrice * Number(percent_change_1h)
+    // currentPrice - currentPrice * Number(percent_change_1h)
     const isInternetReachable = useSelector(selectInternetReachability)
     const [data, setData] = useState([currentPrice])
     const updateIntervalRef = useRef({})
@@ -101,7 +103,11 @@ const CryptoChartScreen = ({ navigation, route }) => {
 }
 CryptoChartScreen.propTypes = {
     navigation: PropTypes.object.isRequired,
-    route: PropTypes.object.isRequired,
+    route: PropTypes.shape({
+        params: PropTypes.shape({
+            coin: cryptoCoin.isRequired,
+        }),
+    }).isRequired,
 }
 
 const Timer = () => {

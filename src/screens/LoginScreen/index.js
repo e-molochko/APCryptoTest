@@ -4,7 +4,7 @@ import { View, TouchableOpacity, Text, TextInput } from 'react-native'
 import { useDispatch } from 'react-redux'
 
 import { updateCurrentUser } from '../../store/actions'
-import { colors } from '../../theme/colors'
+import { styles } from './styles'
 
 const LoginScreen = ({ navigation, route }) => {
     const dispatch = useDispatch()
@@ -16,27 +16,19 @@ const LoginScreen = ({ navigation, route }) => {
     }, [username])
 
     return (
-        <View style={{ flex: 1, backgroundColor: colors.white }}>
+        <View style={styles.container}>
             <TextInput
-                style={{
-                    padding: 10,
-                    margin: 10,
-                    backgroundColor: colors.lavender,
-                }}
+                style={styles.input}
                 onChangeText={onChangeUsername}
                 value={username}
+                placeholder="Enter your username"
             />
             <TouchableOpacity
-                style={{
-                    padding: 5,
-                    marginTop: 20,
-                    backgroundColor: !username ? colors.grey : colors.green,
-                    alignSelf: 'center',
-                }}
+                style={styles.loginButton(username)}
                 disabled={!username}
                 onPress={onLogin}
             >
-                <Text>Login as selected user</Text>
+                <Text style={styles.buttonLabel}>Login as selected user</Text>
             </TouchableOpacity>
         </View>
     )
